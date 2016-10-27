@@ -26,6 +26,6 @@ genfstab -U /mnt >> /mnt/etc/fstab
 cp $(dirname $0)/init_inside.sh /mnt
 arch-chroot /mnt /init_inside.sh "$PASS"
 cp syslinux.cfg.default /mnt/boot/syslinux/syslinux.cfg
-sed -i "s/{{UUID}}/$(lsblk -f "$DISK"2 --output UUID | tail -n 1)/g" /mnt/boot/syslinux/syslinux.cfg
+sed -i "s/{{UUID}}/$(lsblk -f "$DISK"2 --output UUID | head -n 2 | tail -n 1)/g" /mnt/boot/syslinux/syslinux.cfg
 chmod 600 nmconn/*
 cp nmconn/* /mnt/etc/NetworkManager/system-connections/
