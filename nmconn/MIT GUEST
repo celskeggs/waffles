@@ -1,0 +1,25 @@
+[connection]
+id=MIT GUEST
+uuid=fbe32e74-5018-45a3-b781-da53e05dd8e2
+type=wifi
+permissions=user:cel:;
+secondaries=
+timestamp=1476320793
+
+[wifi]
+mac-address=8C:70:5A:99:55:60
+mac-address-blacklist=
+mac-address-randomization=0
+mode=infrastructure
+seen-bssids=58:F3:9C:E8:C9:11;10:05:CA:81:14:4E;10:05:CA:73:8E:C1;10:05:CA:81:12:41;
+ssid=MIT GUEST
+
+[ipv4]
+dns-search=
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+ip6-privacy=0
+method=auto
