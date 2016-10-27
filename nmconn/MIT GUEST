@@ -2,7 +2,7 @@
 id=MIT GUEST
 uuid=fbe32e74-5018-45a3-b781-da53e05dd8e2
 type=wifi
-permissions=user:cel:;
+permissions=user:cela:;
 secondaries=
 timestamp=1476320793
 

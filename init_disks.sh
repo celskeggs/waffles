@@ -15,8 +15,8 @@ dd if=/dev/zero of=$DISK count=16
 echo "n p 1 2048 +300M" "n p 2 616448 " "w" | tr " " "\n" | fdisk $DISK
 echo "$PASS" | cryptsetup luksFormat "$DISK"2
 echo "$PASS" | cryptsetup open "$DISK"2 cryptroot
-mkfs -t ext4 /dev/mapper/cryptroot
-mkfs -t ext4 -O '^64bit' "$DISK"1
+mkfs -t ext4 /dev/mapper/cryptroot </dev/null
+mkfs -t ext4 -O '^64bit' "$DISK"1 </dev/null
 mount -t ext4 /dev/mapper/cryptroot /mnt
 mkdir /mnt/boot
 mount -t ext4 "$DISK"1 /mnt/boot
