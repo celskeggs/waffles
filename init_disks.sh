@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e -x
+set -e
 
 if [ "$1" = "" -o "$2" = "" ]
 then
