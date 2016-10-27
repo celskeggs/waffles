@@ -1,0 +1,31 @@
+# Maintainer: Cel Skeggs <cela@mit.edu>
+pkgname=wafflepkg
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Combination package for waffles"
+arch=(any)
+url="https://github.com/celskeggs/waffles"
+license=('MIT')
+groups=()
+depends=(wpa_supplicant iw dialog sudo syslinux polkit networkmanager gpicview lxappearance lxappearance-obconf lxde-common lxde-icon-theme lxdm lxinput lxlauncher lxpanel lxrandr lxsession lxtask lxterminal openbox pcmanfm arandr firefox chromium gimp libreoffice gedit evince python python-pip python2-pip gnu-netcat tzdata)
+backup=()
+options=()
+install=wafflepkg.install
+source=("MIT GUEST")
+noextract=()
+md5sums=(SKIP)
+validpgpkeys=()
+
+package() {
+	mkdir $pkgdir/etc
+	mkdir $pkgdir/etc/sudoers.d
+	mkdir $pkgdir/etc/NetworkManager
+	mkdir $pkgdir/etc/NetworkManager/system-connections
+	cp $srcdir/"MIT GUEST" $pkgdir/etc/NetworkManager/system-connections/
+	chmod 600 $pkgdir/etc/NetworkManager/system-connections/*
+	echo "LANG=en_US.UTF-8" >$pkgdir/etc/locale.conf
+	echo "KEYMAP=dvorak" >$pkgdir/etc/vconsole.conf
+	echo "en_US.UTF8 UTF-8" >$pkgdir/etc/locale.gen
+	ln -s /usr/share/zoneinfo/America/New_York $pkgdir/etc/localtime
+	echo "cela ALL=(ALL) ALL" >$pkgdir/etc/sudoers.d/cela
+}

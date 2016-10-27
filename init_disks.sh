@@ -10,6 +10,13 @@ fi
 
 DISK=/dev/$1
 PASS=$2
+PKG=$(dirname $0)/wafflepkg*.pkg.tar.xz
+if [ "$(ls $PKG | wc -l)" != "1" ]
+then
+	echo "Bad dist"
+	exit 1
+fi
+
 dd if=/dev/zero of=$DISK count=16
 # TODO: swap space
 echo "n p 1 2048 +300M" "n p 2 616448 " "w" | tr " " "\n" | fdisk $DISK
@@ -24,8 +31,8 @@ mv mirrorlist /etc/pacman.d/mirrorlist
 pacstrap /mnt base
 genfstab -U /mnt >> /mnt/etc/fstab
 cp $(dirname $0)/init_inside.sh /mnt
+cp $(dirname $0)/wafflepkg*.pkg.tar.xz /mnt
 arch-chroot /mnt /init_inside.sh "$PASS"
+rm /mnt/init_inside.sh
 cp syslinux.cfg.default /mnt/boot/syslinux/syslinux.cfg
 sed -i "s/{{UUID}}/$(lsblk -f "$DISK"2 --output UUID | head -n 2 | tail -n 1)/g" /mnt/boot/syslinux/syslinux.cfg
-chmod 600 nmconn/*
-cp nmconn/* /mnt/etc/NetworkManager/system-connections/
