@@ -15,4 +15,5 @@ rm $(basename $PKG)
 sha256sum $GEN
 gpg --sign $GEN
 rm $GEN
+cp $PKG $PKG.sig dist
 rsync -r dist/ athena:waffles

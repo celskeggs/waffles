@@ -1,3 +1,5 @@
 dist
 wafflepkg/pkg
+wafflepkg/src
 wafflepkg/wafflepkg-*.pkg.tar.xz
+wafflepkg/wafflepkg-*.pkg.tar.xz.sig

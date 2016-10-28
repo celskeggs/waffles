@@ -1,6 +1,6 @@
 # Maintainer: Cel Skeggs <cela@mit.edu>
 pkgname=wafflepkg
-pkgver=0.1.0
+pkgver=0.1.2
 pkgrel=1
 pkgdesc="Combination package for waffles"
 arch=(any)
@@ -11,16 +11,17 @@ depends=(wpa_supplicant iw dialog sudo syslinux polkit networkmanager gpicview l
 backup=()
 options=()
 install=wafflepkg.install
-source=("MIT GUEST")
+source=("MIT GUEST" "00-keyboard.conf")
 noextract=()
-md5sums=(SKIP)
+md5sums=(SKIP SKIP)
 validpgpkeys=()
 
 package() {
-	mkdir $pkgdir/etc
-	mkdir $pkgdir/etc/sudoers.d
-	mkdir $pkgdir/etc/NetworkManager
-	mkdir $pkgdir/etc/NetworkManager/system-connections
+	mkdir -p $pkgdir/etc/sudoers.d
+	chmod 750 $pkgdir/etc/sudoers.d
+	mkdir -p $pkgdir/etc/NetworkManager/system-connections
+	mkdir -p $pkgdir/etc/X11/xorg.conf.d
+	cp $srcdir/00-keyboard.conf $pkgdir/etc/X11/xorg.conf.d/
 	cp $srcdir/"MIT GUEST" $pkgdir/etc/NetworkManager/system-connections/
 	chmod 600 $pkgdir/etc/NetworkManager/system-connections/*
 	echo "KEYMAP=dvorak" >$pkgdir/etc/vconsole.conf
