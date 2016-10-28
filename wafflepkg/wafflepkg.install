@@ -18,6 +18,7 @@ post_install() {
 	fi
 	systemctl enable NetworkManager
 	systemctl enable lxdm
+	cp /usr/share/wafflepkg/krb5.conf /etc/krb5.conf
 }
 
 ## arg 1:  the new package version
@@ -29,7 +30,7 @@ pre_upgrade() {
 ## arg 1:  the new package version
 ## arg 2:  the old package version
 post_upgrade() {
-	true
+	post_install
 }
 
 ## arg 1:  the old package version

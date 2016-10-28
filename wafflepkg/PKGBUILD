@@ -1,19 +1,19 @@
 # Maintainer: Cel Skeggs <cela@mit.edu>
 pkgname=wafflepkg
-pkgver=0.1.3
+pkgver=0.1.4
 pkgrel=1
 pkgdesc="Combination package for waffles"
 arch=(any)
 url="https://github.com/celskeggs/waffles"
 license=('MIT')
 groups=()
-depends=(wpa_supplicant iw dialog sudo syslinux polkit networkmanager gpicview lxappearance lxappearance-obconf lxde-common lxde-icon-theme lxdm lxinput lxlauncher lxpanel lxrandr lxsession lxtask lxterminal openbox pcmanfm arandr firefox chromium gimp libreoffice gedit evince python python-pip python2-pip gnu-netcat tzdata openssh)
+depends=(wpa_supplicant iw dialog sudo syslinux polkit networkmanager gpicview lxappearance lxappearance-obconf lxde-common lxde-icon-theme lxdm lxinput lxlauncher lxpanel lxrandr lxsession lxtask lxterminal openbox pcmanfm arandr firefox chromium gimp libreoffice gedit evince python python-pip python2-pip gnu-netcat tzdata openssh krb5)
 backup=()
 options=()
 install=wafflepkg.install
-source=("MIT GUEST" "00-keyboard.conf")
+source=("MIT GUEST" "00-keyboard.conf" "krb5.conf")
 noextract=()
-md5sums=(SKIP SKIP)
+md5sums=(SKIP SKIP SKIP)
 validpgpkeys=()
 
 package() {
@@ -21,8 +21,10 @@ package() {
 	chmod 750 $pkgdir/etc/sudoers.d
 	mkdir -p $pkgdir/etc/NetworkManager/system-connections
 	mkdir -p $pkgdir/etc/X11/xorg.conf.d
+	mkdir -p $pkgdir/usr/share/wafflepkg
 	cp $srcdir/00-keyboard.conf $pkgdir/etc/X11/xorg.conf.d/
 	cp $srcdir/"MIT GUEST" $pkgdir/etc/NetworkManager/system-connections/
+	cp $srcdir/krb5.conf $pkgdir/usr/share/wafflepkg/
 	chmod 600 $pkgdir/etc/NetworkManager/system-connections/*
 	echo "KEYMAP=dvorak" >$pkgdir/etc/vconsole.conf
 	echo "LANG=en_US.UTF-8" >$pkgdir/etc/locale.conf
