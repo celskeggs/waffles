@@ -11,7 +11,7 @@
 post_install() {
 	timedatectl set-ntp true
 	hwclock --systohc
-	echo "LANG=en_US.UTF-8" >/etc/locale.conf
+	echo "en_US.UTF8 UTF-8" >/etc/locale.gen
 	locale-gen
 	if ! getent passwd cela >/dev/null; then
 		useradd -m -G wheel,adm,rfkill,log,sys,systemd-journal,users,uucp,lp -s /bin/bash cela

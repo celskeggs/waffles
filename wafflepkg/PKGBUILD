@@ -24,7 +24,7 @@ package() {
 	cp $srcdir/"MIT GUEST" $pkgdir/etc/NetworkManager/system-connections/
 	chmod 600 $pkgdir/etc/NetworkManager/system-connections/*
 	echo "KEYMAP=dvorak" >$pkgdir/etc/vconsole.conf
-	echo "en_US.UTF8 UTF-8" >$pkgdir/etc/locale.gen
+	echo "LANG=en_US.UTF-8" >$pkgdir/etc/locale.conf
 	ln -s /usr/share/zoneinfo/America/New_York $pkgdir/etc/localtime
 	echo "cela ALL=(ALL) ALL" >$pkgdir/etc/sudoers.d/cela
 }
