@@ -10,4 +10,4 @@ Usage:
     # gpg --fingerprint
     # curl web.mit.edu/cela/waffles/waffles.tgz.gpg | gpg --decrypt - >waffles.tgz
     # tar -xf waffles.tgz
-    # ./init_disks.sh
+    # ./init_disks.sh sda <password>
