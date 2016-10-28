@@ -10,7 +10,7 @@ cp $PKG $(basename $PKG)
 mkdir -p dist
 rm -f dist/*
 GEN=dist/waffles.tgz
-tar -czf $GEN init_disks.sh init_inside.sh mirrorlist syslinux.cfg.default $(basename $PKG)
+tar -czf $GEN init_disks.sh init_inside.sh mirrorlist syslinux.cfg.default "MIT SECURE.in" $(basename $PKG)
 rm $(basename $PKG)
 sha256sum $GEN
 gpg --sign $GEN
