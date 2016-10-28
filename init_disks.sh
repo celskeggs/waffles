@@ -2,18 +2,26 @@
 
 set -e
 
-if [ "$1" = "" -o "$2" = "" ]
+if [ "$1" = "" ]
 then
 	echo "Usage: $0 sda <pass>" 1>&2
 	exit 1
 fi
 
 DISK=/dev/$1
-PASS=$2
 PKG=$(dirname $0)/wafflepkg*.pkg.tar.xz
 if [ "$(ls $PKG | wc -l)" != "1" ]
 then
 	echo "Bad dist"
+	exit 1
+fi
+
+read -p "Passphrase: " -s PASS
+echo
+
+if [ "$PASS" = "" ]
+then
+	echo "Bad pass"
 	exit 1
 fi
 
