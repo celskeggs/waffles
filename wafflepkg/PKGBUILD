@@ -1,6 +1,6 @@
 # Maintainer: Cel Skeggs <cela@mit.edu>
 pkgname=wafflepkg
-pkgver=0.1.4
+pkgver=0.1.5
 pkgrel=1
 pkgdesc="Combination package for waffles"
 arch=(any)
@@ -11,9 +11,9 @@ depends=(wpa_supplicant iw dialog sudo syslinux polkit networkmanager gpicview l
 backup=()
 options=()
 install=wafflepkg.install
-source=("MIT GUEST" "00-keyboard.conf" "krb5.conf")
+source=("MIT GUEST" "00-keyboard.conf" "krb5.conf" "ssh_config")
 noextract=()
-md5sums=(SKIP SKIP SKIP)
+md5sums=(SKIP SKIP SKIP SKIP)
 validpgpkeys=()
 
 package() {
@@ -25,6 +25,7 @@ package() {
 	cp $srcdir/00-keyboard.conf $pkgdir/etc/X11/xorg.conf.d/
 	cp $srcdir/"MIT GUEST" $pkgdir/etc/NetworkManager/system-connections/
 	cp $srcdir/krb5.conf $pkgdir/usr/share/wafflepkg/
+	cp $srcdir/ssh_config $pkgdir/usr/share/wafflepkg/
 	chmod 600 $pkgdir/etc/NetworkManager/system-connections/*
 	echo "KEYMAP=dvorak" >$pkgdir/etc/vconsole.conf
 	echo "LANG=en_US.UTF-8" >$pkgdir/etc/locale.conf

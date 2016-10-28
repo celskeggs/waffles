@@ -19,6 +19,7 @@ post_install() {
 	systemctl enable NetworkManager
 	systemctl enable lxdm
 	cp /usr/share/wafflepkg/krb5.conf /etc/krb5.conf
+	cp /usr/share/wafflepkg/ssh_config /etc/ssh/ssh_config
 }
 
 ## arg 1:  the new package version
