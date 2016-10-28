@@ -1,13 +1,13 @@
 # Maintainer: Cel Skeggs <cela@mit.edu>
 pkgname=wafflepkg
-pkgver=0.1.2
+pkgver=0.1.3
 pkgrel=1
 pkgdesc="Combination package for waffles"
 arch=(any)
 url="https://github.com/celskeggs/waffles"
 license=('MIT')
 groups=()
-depends=(wpa_supplicant iw dialog sudo syslinux polkit networkmanager gpicview lxappearance lxappearance-obconf lxde-common lxde-icon-theme lxdm lxinput lxlauncher lxpanel lxrandr lxsession lxtask lxterminal openbox pcmanfm arandr firefox chromium gimp libreoffice gedit evince python python-pip python2-pip gnu-netcat tzdata)
+depends=(wpa_supplicant iw dialog sudo syslinux polkit networkmanager gpicview lxappearance lxappearance-obconf lxde-common lxde-icon-theme lxdm lxinput lxlauncher lxpanel lxrandr lxsession lxtask lxterminal openbox pcmanfm arandr firefox chromium gimp libreoffice gedit evince python python-pip python2-pip gnu-netcat tzdata openssh)
 backup=()
 options=()
 install=wafflepkg.install
