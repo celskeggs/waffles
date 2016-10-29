@@ -20,6 +20,8 @@ post_install() {
 	systemctl enable lxdm
 	cp /usr/share/wafflepkg/krb5.conf /etc/krb5.conf
 	cp /usr/share/wafflepkg/ssh_config /etc/ssh/ssh_config
+	cp /usr/share/wafflepkg/pcmanfm.conf /etc/xdg/pcmanfm/LXDE/pcmanfm.conf
+	sed -i "s/\# bg=.*/bg=\/usr\/share\/wafflepkg\/background.png/" /etc/lxdm/lxdm.conf
 }
 
 ## arg 1:  the new package version
