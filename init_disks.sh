@@ -19,7 +19,7 @@ fi
 read -p "Passphrase: " -s PASS
 echo
 
-if [ "$PASS" = "" ]
+if [ "${#PASS}" -lt 8 ]
 then
 	echo "Bad pass"
 	exit 1
@@ -30,9 +30,17 @@ cp "MIT SECURE.in" "MIT SECURE"
 read -p "Kerberos passphrase: " -s KPASS
 echo
 
-if [ "$KPASS" = "" ]
+if [ "${#KPASS}" -lt 8 ]
 then
 	echo "Bad kpass"
+	exit 1
+fi
+
+echo "$KPASS" | if kinit cela@ATHENA.MIT.EDU
+then
+	true
+else
+	echo "Bad kpass check"
 	exit 1
 fi
 
