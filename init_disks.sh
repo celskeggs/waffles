@@ -17,6 +17,7 @@ then
 fi
 
 read -p "Passphrase: " -s PASS
+echo
 read -p "Pass again: " -s PASS2
 echo
 
