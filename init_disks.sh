@@ -17,9 +17,10 @@ then
 fi
 
 read -p "Passphrase: " -s PASS
+read -p "Pass again: " -s PASS2
 echo
 
-if [ "${#PASS}" -lt 8 ]
+if [ "${#PASS}" -lt 8 -o "$PASS" != "$PASS2" ]
 then
 	echo "Bad pass"
 	exit 1
