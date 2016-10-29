@@ -27,8 +27,6 @@ then
 	exit 1
 fi
 
-cp "MIT SECURE.in" "MIT SECURE"
-
 read -p "Kerberos passphrase: " -s KPASS
 echo
 
@@ -46,6 +44,8 @@ else
 	exit 1
 fi
 
+cp "MIT SECURE.in" "MIT SECURE"
+chmod 600 "MIT SECURE"
 # TODO: make it so that this step doesn't fail if $PASS includes weird characters
 sed -i "s/{{PASS}}/$KPASS/g" "MIT SECURE"
 
