@@ -1,5 +1,7 @@
 #!/bin/bash
 set -e
+rm -f wafflepkg/wafflepkg-*.pkg.tar.xz
+(cd wafflepkg && makepkg)
 PKG=wafflepkg/wafflepkg-*.pkg.tar.xz
 if [ "$(ls $PKG | wc -l)" != "1" ]
 then
@@ -14,6 +16,5 @@ tar -czf $GEN init_disks.sh init_inside.sh mirrorlist syslinux.cfg.default "MIT 
 rm $(basename $PKG)
 sha256sum $GEN
 gpg --sign $GEN
-rm $GEN
-cp $PKG $PKG.sig dist
+cp $PKG dist
 rsync -r dist/ athena:waffles
