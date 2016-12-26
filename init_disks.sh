@@ -27,6 +27,7 @@ then
 	exit 1
 fi
 
+timedatectl set-ntp true
 dd if=/dev/zero of=$DISK count=16
 # TODO: swap space
 echo "n p 1 2048 +300M" "n p 2 616448 " "w" | tr " " "\n" | fdisk $DISK
