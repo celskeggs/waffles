@@ -21,6 +21,7 @@ package() {
 	chmod 750 $pkgdir/etc/sudoers.d
 	mkdir -p $pkgdir/etc/NetworkManager/system-connections
 	mkdir -p $pkgdir/etc/X11/xorg.conf.d
+	mkdir -p $pkgdir/etc/wafflepkg
 	mkdir -p $pkgdir/usr/share/wafflepkg
 	cp $srcdir/00-keyboard.conf $pkgdir/etc/X11/xorg.conf.d/
 	cp $srcdir/"MIT GUEST" $pkgdir/etc/NetworkManager/system-connections/

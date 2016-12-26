@@ -27,28 +27,6 @@ then
 	exit 1
 fi
 
-read -p "Kerberos passphrase: " -s KPASS
-echo
-
-if [ "${#KPASS}" -lt 8 ]
-then
-	echo "Bad kpass"
-	exit 1
-fi
-
-echo "$KPASS" | if kinit cela@ATHENA.MIT.EDU
-then
-	true
-else
-	echo "Bad kpass check"
-	exit 1
-fi
-
-cp "MIT SECURE.in" "MIT SECURE"
-chmod 600 "MIT SECURE"
-# TODO: make it so that this step doesn't fail if $PASS includes weird characters
-sed -i "s/{{PASS}}/$KPASS/g" "MIT SECURE"
-
 dd if=/dev/zero of=$DISK count=16
 # TODO: swap space
 echo "n p 1 2048 +300M" "n p 2 616448 " "w" | tr " " "\n" | fdisk $DISK
@@ -64,8 +42,8 @@ pacstrap /mnt base
 genfstab -U /mnt >> /mnt/etc/fstab
 cp $(dirname $0)/init_inside.sh /mnt
 cp $(dirname $0)/wafflepkg*.pkg.tar.xz /mnt
+cp $(dirname $0)/cela.asc /mnt
 arch-chroot /mnt /init_inside.sh "$PASS"
 rm /mnt/init_inside.sh
-cp "MIT SECURE" /mnt/etc/NetworkManager/system-connections/"MIT SECURE"
 cp syslinux.cfg.default /mnt/boot/syslinux/syslinux.cfg
 sed -i "s/{{UUID}}/$(lsblk -f "$DISK"2 --output UUID | head -n 2 | tail -n 1)/g" /mnt/boot/syslinux/syslinux.cfg
