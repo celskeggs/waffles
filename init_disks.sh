@@ -47,3 +47,4 @@ arch-chroot /mnt /init_inside.sh "$PASS"
 rm /mnt/init_inside.sh
 cp syslinux.cfg.default /mnt/boot/syslinux/syslinux.cfg
 sed -i "s/{{UUID}}/$(lsblk -f "$DISK"2 --output UUID | head -n 2 | tail -n 1)/g" /mnt/boot/syslinux/syslinux.cfg
+sync
