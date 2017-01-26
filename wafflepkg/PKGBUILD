@@ -1,19 +1,19 @@
 # Maintainer: Cel Skeggs <cela@mit.edu>
 pkgname=wafflepkg
-pkgver=0.1.7
+pkgver=0.1.11
 pkgrel=1
 pkgdesc="Combination package for waffles"
 arch=(any)
 url="https://github.com/celskeggs/waffles"
 license=('MIT')
 groups=()
-depends=(wpa_supplicant iw dialog sudo syslinux polkit networkmanager gpicview lxappearance lxappearance-obconf lxde-common lxde-icon-theme lxdm lxinput lxlauncher lxpanel lxrandr lxsession lxtask lxterminal openbox pcmanfm arandr firefox chromium gimp libreoffice gedit evince python python-pip python2-pip gnu-netcat tzdata openssh krb5 network-manager-applet wget xf86-input-libinput ttf-dejavu)
+depends=(wpa_supplicant iw dialog sudo syslinux polkit networkmanager gpicview lxappearance lxappearance-obconf lxde-common lxde-icon-theme lxdm lxinput lxlauncher lxpanel lxrandr lxsession lxtask lxterminal openbox pcmanfm arandr firefox chromium gimp libreoffice gedit evince python python-pip python2-pip gnu-netcat tzdata openssh krb5 network-manager-applet wget xf86-input-libinput ttf-dejavu xscreensaver autoconf automake binutils bison fakeroot file findutils flex gawk gcc gettext grep groff gzip libtool m4 make pacman patch pkg-config sed texinfo util-linux which git pulseaudio pavucontrol duplicity python2-boto linux-headers)
 backup=()
 options=()
 install=wafflepkg.install
-source=("MIT GUEST" "00-keyboard.conf" "krb5.conf" "ssh_config" "background.png" "pcmanfm.conf")
+source=("00-keyboard.conf" "krb5.conf" "ssh_config" "background.png" "pcmanfm.conf")
 noextract=()
-md5sums=(SKIP SKIP SKIP SKIP SKIP SKIP)
+md5sums=(SKIP SKIP SKIP SKIP SKIP)
 validpgpkeys=()
 
 package() {
@@ -24,7 +24,6 @@ package() {
 	mkdir -p $pkgdir/etc/wafflepkg
 	mkdir -p $pkgdir/usr/share/wafflepkg
 	cp $srcdir/00-keyboard.conf $pkgdir/etc/X11/xorg.conf.d/
-	cp $srcdir/"MIT GUEST" $pkgdir/etc/NetworkManager/system-connections/
 	cp $srcdir/krb5.conf $pkgdir/usr/share/wafflepkg/
 	cp $srcdir/ssh_config $pkgdir/usr/share/wafflepkg/
 	cp $srcdir/background.png $pkgdir/usr/share/wafflepkg/
